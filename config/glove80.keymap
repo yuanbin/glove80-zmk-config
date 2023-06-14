@@ -23,6 +23,23 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/outputs.h>
 
+#include <dt-bindings/zmk/dynamic-macros.h>
+
+// Key position groups
+#define KEYS_L 0 1 2 3 4 10 11 12 13 14 15 22 23 24 25 26 27 34 35 36 37 38 39 46 47 48 49 50 51 64 65 66 67 68
+#define KEYS_R 5 6 7 8 9 16 17 18 19 20 21 28 29 30 31 32 33 40 41 42 43 44 45 58 59 60 61 62 63 75 76 77 78 79
+#define THUMBS 52 53 54 55 56 57 69 70 71 72 73 74
+
+&caps_word {  // mods deactivate caps-word, requires numword patch from urob
+        /delete-property/ ignore-modifiers;
+};
+&num_word {  // num-word, requires numword patch from urob
+        layers = <4>;
+        //continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL>;
+};
+&sk {
+	quick-release;
+};
 
 / {
     /* Glove80 system behavior & macros */
@@ -102,6 +119,106 @@
     };
 
     /* Custom Defined Behaviors */
+    behaviors {
+            mtl: mod_tap_l {
+                    compatible = "zmk,behavior-hold-tap";
+                    label = "MOD_TAP_L";
+                    #binding-cells = <2>;
+                    tapping-term-ms = <280>;
+                    quick-tap-ms = <150>;
+                    flavor = "balanced";
+                    bindings = <&kp>, <&kp>;
+                    hold-trigger-key-positions = <KEYS_R THUMBS>;
+                    hold-trigger-on-release; // requires PR #1423 - merged
+                    global-quick-tap;
+                    //global-quick-tap-ms = <100>; // requires PR #1387 - not merged
+            };
+            mtr: mod_tap_r {
+                    compatible = "zmk,behavior-hold-tap";
+                    label = "MOD_TAP_R";
+                    #binding-cells = <2>;
+                    tapping-term-ms = <280>;
+                    quick-tap-ms = <150>;
+                    flavor = "balanced";
+                    bindings = <&kp>, <&kp>;
+                    hold-trigger-key-positions = <KEYS_L THUMBS>;
+                    hold-trigger-on-release; // requires PR #1423 - merged
+                    global-quick-tap;
+                    //global-quick-tap-ms = <100>; // requires PR #1387 - not merged
+            };
+            ltl: layer_tap_l {
+                    compatible = "zmk,behavior-hold-tap";
+                    label = "LAYER_TAP_L";
+                    #binding-cells = <2>;
+                    tapping-term-ms = <200>;
+                    //quick-tap-ms = <150>;
+                    flavor = "balanced";
+                    bindings = <&mo>, <&kp>;
+                    hold-trigger-key-positions = <KEYS_R THUMBS>;
+                    //hold-trigger-on-release; // requires PR #1423 - merged
+                    //global-quick-tap;
+                    //global-quick-tap-ms = <100>; // requires PR #1387 - not merged
+            };
+            ltr: layer_tap_r {
+                    compatible = "zmk,behavior-hold-tap";
+                    label = "LAYER_TAP_R";
+                    #binding-cells = <2>;
+                    tapping-term-ms = <200>;
+                    //quick-tap-ms = <150>;
+                    flavor = "balanced";
+                    bindings = <&mo>, <&kp>;
+                    hold-trigger-key-positions = <KEYS_L THUMBS>;
+                    //hold-trigger-on-release; // requires PR #1423 - merged
+                    //global-quick-tap;
+                    //global-quick-tap-ms = <100>; // requires PR #1387 - not merged
+            };
+	    nav_word: behavior_nav_word {
+		    compatible = "zmk,behavior-caps-word";
+		    label = "NAV_WORD";
+		    #binding-cells = <0>;
+                    layers = <5>; // insert location of numbers layer here
+		    continue-list = <UP DOWN LEFT RIGHT PG_DN PG_UP HOME END>;  // adjust as desired
+	    };
+	    td_caps_nav: behavior_tap_dance_caps_nav_word {
+		    compatible = "zmk,behavior-tap-dance";
+		    label = "TAP_DANCE_CAPS_NAV";
+		    #binding-cells = <0>;
+		    tapping-term-ms = <200>;
+		    bindings = <&caps_word>, <&nav_word>;
+	    };
+	    mm_caps_nav: behavior_mod_morph_caps_nav_word {
+		    compatible = "zmk,behavior-mod-morph";
+		    label = "MOD_MORPH_CAPS_NAV";
+		    #binding-cells = <0>;
+		    bindings = <&caps_word>, <&nav_word>;
+		    mods = <(MOD_LSFT)>;
+	    };
+    };
+
+    macros {
+	    home_dir: home_dir {
+		    label = "home_dir";
+		    compatible = "zmk,behavior-macro";
+		    #binding-cells = <0>;
+		    wait-ms = <40>;
+		    tap-ms = <40>;
+		    bindings = <&kp TILDE &kp SLASH>;
+            };
+	    paren_dir: paren_dir {
+		    label = "paren_dir";
+		    compatible = "zmk,behavior-macro";
+		    #binding-cells = <0>;
+		    wait-ms = <40>;
+		    tap-ms = <40>;
+		    bindings = <&kp PERIOD &kp PERIOD &kp SLASH>;
+            };
+	    dyn_macro: dyn_macro { // requires PR #1351 - manually merged
+		    label = "ZM_dynamic-macro";
+		    compatible = "zmk,behavior-dynamic-macro";
+		    #binding-cells = <1>;
+		    wait-ms = <20>;
+            };
+    };
 
 
     /* Automatically generated keymap */
@@ -109,14 +226,14 @@
         compatible = "zmk,keymap";
 
 
-        base_layer {
+        layer_Base {
             bindings = <
-     &kp F1    &kp F2   &kp F3    &kp F4     &kp F5                                                                                  &kp F6     &kp F7    &kp F8    &kp F9    &kp F10
-  &kp EQUAL    &kp N1   &kp N2    &kp N3     &kp N4  &kp N5                                                                  &kp N6  &kp N7     &kp N8    &kp N9    &kp N0  &kp MINUS
-    &kp TAB     &kp Q    &kp W     &kp E      &kp R   &kp T                                                                   &kp Y   &kp U      &kp I     &kp O     &kp P   &kp BSLH
-    &kp ESC     &kp A    &kp S     &kp D      &kp F   &kp G                                                                   &kp H   &kp J      &kp K     &kp L  &kp SEMI    &kp SQT
-  &kp GRAVE     &kp Z    &kp X     &kp C      &kp V   &kp B  &kp LSHFT  &kp LCTRL    &lower  &kp LGUI  &kp RCTRL  &kp RSHFT   &kp N   &kp M  &kp COMMA   &kp DOT  &kp FSLH  &kp PG_UP
- &magic 2 0  &kp HOME  &kp END  &kp LEFT  &kp RIGHT           &kp BSPC    &kp DEL  &kp LALT  &kp RALT    &kp RET  &kp SPACE          &kp UP   &kp DOWN  &kp LBKT  &kp RBKT  &kp PG_DN
+        &kp F1    &kp F2         &kp F3    &kp F4     &kp F5                                                                                   &kp F6     &kp F7          &kp F8    &kp F9    &kp F10
+     &kp EQUAL    &kp N1         &kp N2    &kp N3     &kp N4  &kp N5                                                                &kp N6     &kp N7     &kp N8          &kp N9    &kp N0  &kp MINUS
+       &kp TAB     &kp Q          &kp W     &kp E      &kp R   &kp T                                                             &kp Y      &kp U      &kp I           &kp O     &kp P   &kp BSLH
+ &mt LSHFT ESC     &mtl LSHIFT A         &mtl LALT S   &mtl LCTRL D    &ltl 3 F   &kp G                                                &kp H      &ltr 3 J    &mtr RCTRL K       &mtr RALT L  &mtr RSHIFT SEMI    &kp SQT
+     &kp GRAVE     &kp Z          &kp X     &kp C      &kp V   &kp B  &sk LSHIFT  &num_word   &lower    &kp LGUI  &mm_caps_nav   &sk RSHIFT   &kp N      &kp M  &kp COMMA         &kp DOT  &kp FSLH  &kp PG_UP
+    &magic 2 0  &kp HOME  &kp END  &kp LEFT  &kp RIGHT          &kp RET  &kp BSPC  &kp DEL  &key_repeat    &kp TAB  &kp SPACE          &kp UP   &kp DOWN  &kp LBKT  &kp RBKT  &kp PG_DN
             >;
         };
 
@@ -135,10 +252,43 @@
             bindings = <
   &bt BT_CLR            &none            &none            &none            &none                                                                                  &none   &none   &none   &none  &bt BT_CLR_ALL
        &none            &none            &none            &none            &none            &none                                                         &none   &none   &none   &none   &none           &none
-      &trans  &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                         &none   &none   &none   &none   &none           &none
+       &none  &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                         &none   &none   &none   &none   &none           &none
  &bootloader  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                         &none   &none   &none   &none   &none     &bootloader
       &reset            &none            &none            &none            &none            &none   &bt_2   &bt_3         &none   &none   &none   &none   &none   &none   &none   &none   &none          &reset
        &none            &none            &none            &none            &none                    &bt_0   &bt_1  &out OUT_USB   &none   &none   &none           &none   &none   &none   &none           &none
+            >;
+        };
+
+        layer_symbol {
+            bindings = <
+ &dyn_macro PLAY     &dyn_macro RECORD     &trans    &trans     &trans                                                       &trans    &trans    &trans      &trans  &trans
+ &trans     &trans     &trans    &trans     &trans     &trans                                                     &trans     &trans    &trans    &trans      &trans  &trans
+ &trans     &kp AT     &kp LT    &kp GT   &kp HASH  &kp PRCNT                                                   &kp PIPE  &kp COLON  &kp LBRC  &kp RBRC   &kp CARET  &trans
+ &trans   &kp EXCL  &kp MINUS  &kp PLUS  &kp EQUAL    &kp DQT                                                   &kp AMPS  &kp UNDER  &kp LPAR  &kp RPAR   &kp GRAVE  &trans
+ &trans  &home_dir   &kp BSLH  &kp STAR   &kp FSLH  &kp QMARK  &trans  &trans  &trans  &trans  &trans  &trans  &kp TILDE   &kp DLLR  &kp LBKT  &kp RBKT  &paren_dir  &trans
+ &trans     &trans     &trans    &trans     &trans             &trans  &trans  &trans  &trans  &trans  &trans                &trans    &trans    &trans      &trans  &trans
+            >;
+        };
+
+        layer_number {
+            bindings = <
+  &trans   &trans   &trans   &trans   &trans                                                                   &trans    &trans   &trans   &trans   &trans
+  &trans   &trans   &trans   &trans   &trans   &trans                                                   &trans   &trans    &trans   &trans   &trans   &trans
+  &trans   &trans   &trans   &trans   &trans   &trans                                                   &trans  &kp N7   &kp N8  &kp N9   &trans   &trans
+  &trans   &trans   &trans   &trans   &trans   &trans                                                   &trans  &kp N4   &kp N5  &kp N6   &trans   &trans
+  &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans  &kp N1   &kp N2  &kp N3   &trans   &trans
+  &trans   &trans   &trans   &trans   &trans           &trans   &trans   &trans   &trans   &trans   &trans          &kp N0  &kp DOT   &trans   &trans   &trans
+            >;
+        };
+
+        layer_nav {
+            bindings = <
+  &trans   &trans   &trans   &trans   &trans                                                                   &trans    &trans   &trans   &trans   &trans
+  &trans   &trans   &trans   &trans   &trans   &trans                                                   &trans   &trans    &trans   &trans   &trans   &trans
+  &trans   &trans   &kp PG_UP   &kp UP   &kp PG_DN   &trans                                                   &trans  &trans   &trans  &trans   &trans   &trans
+  &trans   &trans   &kp LEFT   &kp DOWN   &kp RIGHT   &trans                                                   &trans  &trans   &trans  &trans   &trans   &trans
+  &trans   &trans   &kp HOME   &trans   &kp END   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans  &trans   &trans  &trans   &trans   &trans
+  &trans   &trans   &trans   &trans   &trans           &trans   &trans   &trans   &trans   &trans   &trans          &trans  &trans   &trans   &trans   &trans
             >;
         };
 
