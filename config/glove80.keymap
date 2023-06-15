@@ -198,7 +198,7 @@
 		    label = "SWAPPER";
 		    #binding-cells = <0>;
 		    bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
-		    timeout-ms = <5000>;
+		    //timeout-ms = <5000>;
             };
     };
 
