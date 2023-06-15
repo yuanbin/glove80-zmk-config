@@ -193,6 +193,13 @@
 		    bindings = <&caps_word>, <&nav_word>;
 		    mods = <(MOD_LSFT)>;
 	    };
+	    swap: swapper {
+		    compatible = "zmk,behavior-tri-state";
+		    label = "SWAPPER";
+		    #binding-cells = <0>;
+		    bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+		    timeout-ms = <5000>;
+            };
     };
 
     macros {
@@ -226,8 +233,8 @@
      &kp EQUAL    &kp N1         &kp N2    &kp N3     &kp N4  &kp N5                                                                &kp N6     &kp N7     &kp N8          &kp N9    &kp N0  &kp MINUS
        &kp TAB     &kp Q          &kp W     &kp E      &kp R   &kp T                                                             &kp Y      &kp U      &kp I           &kp O     &kp P   &kp BSLH
  &mt LSHFT ESC     &mtl LSHIFT A         &mtl LALT S   &mtl LCTRL D    &ltl 3 F   &kp G                                                &kp H      &ltr 3 J    &mtr RCTRL K       &mtr RALT L  &mtr RSHIFT SEMI    &kp SQT
-     &kp GRAVE     &kp Z          &kp X     &kp C      &kp V   &kp B  &sk LSHIFT  &num_word   &lower    &kp LGUI  &mm_caps_nav   &kp RA(R)   &kp N      &kp M  &kp COMMA         &kp DOT  &kp FSLH  &kp PG_UP
-    &magic 2 0  &kp HOME  &kp END  &kp LEFT  &kp RIGHT          &kp RET  &kp BSPC  &kp DEL  &key_repeat    &kp TAB  &kp SPACE          &kp UP   &kp DOWN  &kp LBKT  &kp RBKT  &kp PG_DN
+     &kp GRAVE     &kp Z          &kp X     &kp C      &kp V   &kp B  &swap  &num_word   &lower    &kp LGUI  &mm_caps_nav   &kp RA(R)   &kp N      &kp M  &kp COMMA         &kp DOT  &kp FSLH  &kp PG_UP
+    &magic 2 0  &kp HOME  &mt LSHIFT END  &kp LEFT  &kp RIGHT          &kp RET  &kp BSPC  &kp DEL  &key_repeat    &kp TAB  &kp SPACE          &kp UP   &kp DOWN  &mt RSHIFT LBKT  &kp RBKT  &kp PG_DN
             >;
         };
 
