@@ -40,6 +40,8 @@
 #define L_MAGIC 7
 #define L_NUMBERS 8
 
+#define MACRO_WAIT_MS 80
+
 &caps_word {  // mods deactivate caps-word, requires numword patch from urob
         /delete-property/ ignore-modifiers;
 };
@@ -203,6 +205,13 @@
 		    bindings = <&caps_word>, <&nav_word>;
 		    mods = <(MOD_LSFT)>;
 	    };
+	    mm_rar_np: behavior_mod_morph_rar_np {
+		    compatible = "zmk,behavior-mod-morph";
+		    label = "MOD_MORPH_RAR_NP";
+		    #binding-cells = <0>;
+		    bindings = <&rarn>, <&rarp>;
+		    mods = <(MOD_LSFT)>;
+	    };
 	    swap: swapper {
 		    compatible = "zmk,behavior-tri-state";
 		    label = "SWAPPER";
@@ -215,24 +224,54 @@
     macros {
 	    ZMK_MACRO(home_dir,
 		tap-ms = <0>;
-		wait-ms = <0>;
+		wait-ms = <MACRO_WAIT_MS>;
 		bindings = <&kp TILDE &kp SLASH>;
 		     )
 	    ZMK_MACRO(paren_dir,
 		tap-ms = <0>;
-		wait-ms = <0>;
+		wait-ms = <MACRO_WAIT_MS>;
 		bindings = <&kp PERIOD &kp PERIOD &kp SLASH>;
 		    )
 	    ZMK_MACRO(rarn,
 		tap-ms = <0>;
-		wait-ms = <20>;
-		bindings = <&kt RALT &kp R &kt RALT &kp N>;
+		wait-ms = <MACRO_WAIT_MS>;
+		bindings = <&kp RA(R) &kp N>;
 		    )
+	    ZMK_MACRO(rarp,
+		tap-ms = <0>;
+		wait-ms = <MACRO_WAIT_MS>;
+		bindings = <&kp RA(R) &kp P>;
+		     )
+	    ZMK_MACRO(emacs_goto,
+		tap-ms = <0>;
+		wait-ms = <MACRO_WAIT_MS>;
+		bindings = <&kp LA(G) &kp G>;
+		     )
+	    ZMK_MACRO(emacs_save,
+		tap-ms = <0>;
+		wait-ms = <MACRO_WAIT_MS>;
+		bindings = <&kp LC(X) &kp LC(S)>;
+		     )
+	    ZMK_MACRO(emacs_kill_buffer,
+		tap-ms = <0>;
+		wait-ms = <MACRO_WAIT_MS>;
+		bindings = <&kp LC(X) &kp K>;
+		     )
+	    ZMK_MACRO(emacs_mark_buffer,
+		tap-ms = <0>;
+		wait-ms = <MACRO_WAIT_MS>;
+		bindings = <&kp LC(X) &kp H>;
+		     )
+	    ZMK_MACRO(emacs_find_file,
+		tap-ms = <0>;
+		wait-ms = <MACRO_WAIT_MS>;
+		bindings = <&kp LC(X) &kp LC(F)>;
+		     )
 	    dyn_macro: dyn_macro { // requires PR #1351 - manually merged
 		    label = "ZM_dynamic-macro";
 		    compatible = "zmk,behavior-dynamic-macro";
 		    #binding-cells = <1>;
-		    wait-ms = <20>;
+		    wait-ms = <MACRO_WAIT_MS>;
             };
     };
 
@@ -257,7 +296,7 @@
 		&none    &none    &none    &none     &none
 		/*r2*/
 		&none    &none    &none    &swap     &none    &none
-		&none    &none    &rarn    &none     &none    &none
+		&none    &none    &mm_rar_np    &none     &none    &none
 		/*r3*/
 		&none    &kp Q             &ltl L_FN_MOUSE W     &ltl L_NUM_NAV E      &ltl L_MEDIA R   &kp T
                 &kp Y    &ltr L_MEDIA U    &ltr L_NUM_NAV I      &ltr L_FN_MOUSE O     &kp P            &none
@@ -306,13 +345,13 @@
 		&trans   &trans   &trans   &trans   &trans   &trans
                 &trans   &trans   &trans   &trans   &trans   &trans
 		/*r3*/
-		&trans   &trans   &trans   &kp HOME   &trans   &trans
-		&trans  &kp N7   &kp N8  &kp N9   &kp LS(N8)   &trans
+		&trans   &trans   &kp LEFT_ARROW   &kp HOME   &kp RIGHT_ARROW   &trans
+		&trans  &kp N7   &kp N8  &kp N9   &kp STAR   &trans
 		/*r4*/
-		&trans   &trans   &kp C_AC_BACK   &kp END   &kp C_AC_FORWARD   &caps_word
-		&num_word  &kp N4   &kp N5  &kp N6   &kp LS(EQUAL)   &kp MINUS
+		&trans   &trans   &kp K_BACK   &kp END   &kp K_FORWARD   &caps_word
+		&num_word  &kp N4   &kp N5  &kp N6   &kp PLUS   &kp MINUS
 		/*r5*/
-		&trans   &trans   &trans   &kp C_AC_HOME   &trans   &trans   &trans   &trans   &trans
+		&trans   &trans   &trans   &kp K_WWW   &trans   &trans   &trans   &trans   &trans
 		&trans   &trans   &trans   &trans  &kp N1   &kp N2  &kp N3   &kp FSLH   &trans
 		/*r6*/
 		&trans   &trans   &kp SYSREQ   &kp DELETE   &trans   &trans      &trans   &trans
@@ -355,16 +394,16 @@
                 &trans   &trans   &trans   &trans   &trans   &trans
 		/*r3*/
 		&trans   &trans   &trans   &dyn_macro RECORD   &trans   &trans
-                &trans   &trans   &trans   &trans   &trans   &trans
+                &trans   &kp LC(LS(SPACE))   &kp LC(PLUS)   &kp LC(MINUS)   &kp LC(N0)   &trans
 		/*r4*/
 		&trans   &trans   &trans   &dyn_macro PLAY   &trans   &trans
-                &trans   &trans   &trans   &trans   &trans   &trans
+                &trans   &kp LA(PRCNT)   &kp LC(UNDER)   &emacs_goto  &emacs_save   &trans
 		/*r5*/
 		&trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans
-		&trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans
+		&trans   &trans   &trans   &trans   &kp LA(CARET)   &emacs_kill_buffer   &emacs_mark_buffer   &emacs_find_file   &trans
 		/*r6*/
+		&trans   &trans   &kp C_PWR   &kp K_LOCK   &kp C_SLEEP   &trans   &trans   &trans
 		&trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans
-		&trans   &trans   &kp K_PWR   &kp K_LOCK   &kp K_SLEEP   &trans   &trans   &trans
             >;
         };
 
@@ -451,10 +490,10 @@
                 &trans   &trans    &trans   &trans   &trans   &trans
 		/*r3*/
 		&trans   &trans   &trans   &trans   &trans   &trans
-                &trans  &kp N7   &kp N8  &kp N9   &kp LS(N8)   &trans
+                &trans  &kp N7   &kp N8  &kp N9   &kp STAR   &trans
 		/*r4*/
 		&trans   &trans   &trans   &trans   &trans   &trans
-                &trans  &kp N4   &kp N5  &kp N6   &kp LS(EQUAL)   &kp MINUS
+                &trans  &kp N4   &kp N5  &kp N6   &kp PLUS   &kp MINUS
 		/*r5*/
 		&trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans &trans
 		&trans   &trans   &trans   &trans  &kp N1   &kp N2  &kp N3   &kp FSLH   &trans
