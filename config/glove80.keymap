@@ -271,7 +271,7 @@
 		    label = "ZM_dynamic-macro";
 		    compatible = "zmk,behavior-dynamic-macro";
 		    #binding-cells = <1>;
-		    wait-ms = <MACRO_WAIT_MS>;
+		    wait-ms = 20;
             };
     };
 
