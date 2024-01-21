@@ -307,8 +307,8 @@
 		&none  &kp Z   &kp X   &kp C      &kp V   &kp B        &none    &none     &none
 		&none  &none   &none   &kp N      &kp M   &kp COMMA    &kp DOT  &kp FSLH  &none
 		/*r6*/
-		&magic L_MAGIC 0  &none    &sk LSHIFT    &kp PG_UP  &kp PG_DN     &kp RET         &kp BSPC  &none
-		&none             &kp TAB  &kp SPACE          &kp UP     &kp DOWN      &sk RSHIFT  &none     &none
+		&magic L_MAGIC 0  &none    &kp PG_UP    &kp PG_DN  &sk LSHIFT     &kp RET &kp BSPC  &none
+		&none             &kp TAB  &kp SPACE    &sk RSHIFT &kp DOWN       &sk UP  &none     &none
             >;
         };
 	/* 1 */
@@ -349,13 +349,13 @@
 		&trans  &kp N7   &kp N8  &kp N9   &kp STAR   &trans
 		/*r4*/
 		&trans   &trans   &kp K_BACK   &kp END   &kp K_FORWARD   &caps_word
-		&num_word  &kp N4   &kp N5  &kp N6   &kp PLUS   &kp MINUS
+		&num_word  &kp N4   &kp N5  &kp N6   &kp DOT   &kp MINUS
 		/*r5*/
 		&trans   &trans   &trans   &kp K_WWW   &trans   &trans   &trans   &trans   &trans
 		&trans   &trans   &trans   &trans  &kp N1   &kp N2  &kp N3   &kp FSLH   &trans
 		/*r6*/
-		&trans   &trans   &kp SYSREQ   &kp DELETE   &trans   &trans      &trans   &trans
-                &trans   &trans   &kp RA(R)    &kp N0       &kp DOT  &kp EQUAL   &trans   &kp CAPSLOCK
+		&trans   &trans   &kp SYSREQ   &kp DELETE   &kp K_APP   &trans      &trans   &trans
+                &trans   &trans   &kp RA(R)    &kp N0       &kp PLUS  &kp EQUAL   &trans   &kp CAPSLOCK
             >;
         };
 
@@ -393,7 +393,7 @@
 		&trans   &trans   &trans   &trans   &trans   &trans
                 &trans   &trans   &trans   &trans   &trans   &trans
 		/*r3*/
-		&trans   &trans   &trans   &dyn_macro RECORD   &trans   &trans
+		&trans   &trans   &trans   &trans   &trans   &trans
                 &trans   &kp LC(LS(SPACE))   &kp LC(PLUS)   &kp LC(MINUS)   &kp LC(N0)   &trans
 		/*r4*/
 		&trans   &trans   &trans   &dyn_macro PLAY   &trans   &trans
@@ -402,7 +402,7 @@
 		&trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans
 		&trans   &trans   &trans   &trans   &kp LA(CARET)   &emacs_kill_buffer   &emacs_mark_buffer   &emacs_find_file   &trans
 		/*r6*/
-		&trans   &trans   &kp C_PWR   &kp K_LOCK   &kp C_SLEEP   &trans   &trans   &trans
+		&trans   &trans   &kp C_SLEEP  &kp C_PWR   &kp K_LOCK    &dyn_macro RECORD   &trans   &trans
 		&trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans
             >;
         };
@@ -493,13 +493,13 @@
                 &trans  &kp N7   &kp N8  &kp N9   &kp STAR   &trans
 		/*r4*/
 		&trans   &trans   &trans   &trans   &trans   &trans
-                &trans  &kp N4   &kp N5  &kp N6   &kp PLUS   &kp MINUS
+                &trans  &kp N4   &kp N5  &kp N6   &kp DOT   &kp MINUS
 		/*r5*/
 		&trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans &trans
 		&trans   &trans   &trans   &trans  &kp N1   &kp N2  &kp N3   &kp FSLH   &trans
 		/*r6*/
 		&trans   &trans   &trans   &trans   &trans           &trans   &trans   &trans
-		&trans &trans   &trans          &kp N0  &kp DOT   &kp EQUAL   &trans   &trans
+		&trans &trans   &trans          &kp N0  &kp PLUS   &kp EQUAL   &trans   &trans
             >;
         };
     };
