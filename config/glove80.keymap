@@ -308,7 +308,7 @@
 		&none  &none   &none   &kp N      &kp M   &kp COMMA    &kp DOT  &kp FSLH  &none
 		/*r6*/
 		&magic L_MAGIC 0  &none    &kp PG_UP    &kp PG_DN  &sk LSHIFT     &kp RET &kp BSPC  &none
-		&none             &kp TAB  &kp SPACE    &sk RSHIFT &kp DOWN       &sk UP  &none     &none
+		&none             &kp TAB  &kp SPACE    &sk RSHIFT &kp DOWN       &kp UP  &none     &none
             >;
         };
 	/* 1 */
