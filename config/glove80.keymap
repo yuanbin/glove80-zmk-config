@@ -189,7 +189,7 @@
 		    label = "NAV_WORD";
 		    #binding-cells = <0>;
                     layers = <L_NUM_NAV>; // insert location of numbers layer here
-		    continue-list = <UP DOWN LEFT RIGHT PG_DN PG_UP HOME END>;  // adjust as desired
+		    continue-list = <UP DOWN LEFT RIGHT PG_DN PG_UP HOME END K_BACK K_FORWARD>;  // adjust as desired
 	    };
 	    td_caps_nav: behavior_tap_dance_caps_nav_word {
 		    compatible = "zmk,behavior-tap-dance";
@@ -295,17 +295,17 @@
 		&none    &none    &none    &none     &none
 		&none    &none    &none    &none     &none
 		/*r2*/
-		&none    &none    &none    &swap     &none    &none
-		&none    &none    &mm_rar_np    &none     &none    &none
+		&none    &none    &none    &none     &none    &none
+		&none    &none    &none    &none     &none    &none
 		/*r3*/
-		&none    &kp Q             &ltl L_FN_MOUSE W     &ltl L_NUM_NAV E      &ltl L_MEDIA R   &kp T
-                &kp Y    &ltr L_MEDIA U    &ltr L_NUM_NAV I      &ltr L_FN_MOUSE O     &kp P            &none
+		&kp ESC    &kp Q             &ltl L_FN_MOUSE W     &ltl L_NUM_NAV E      &ltl L_MEDIA R   &kp T
+                &mtr RGUI Y    &ltr L_MEDIA U    &ltr L_NUM_NAV I      &ltr L_FN_MOUSE O     &kp P            &nav_word
 		/*r4*/
-		&mt LSHFT ESC       &mtl LSHIFT A         &mtl LALT S        &mtl LCTRL D    &ltl L_SYMBOLS F    &ltl L_MAC_SYS G
-                &ltr L_MAC_SYS H    &ltr L_SYMBOLS J      &mtr RCTRL K       &mtr RALT L     &mtr RSHIFT SEMI    &mtr RGUI SQT
+		&swap       &mtl LSHIFT A         &mtl LALT S        &mtl LCTRL D    &ltl L_SYMBOLS F    &ltl L_MAC_SYS G
+                &ltr L_MAC_SYS H    &ltr L_SYMBOLS J      &mtr RCTRL K       &mtr RALT L     &mtr RSHIFT SEMI    &mm_rar_np
 		/*r5*/
-		&none  &kp Z   &kp X   &kp C      &kp V   &kp B        &none    &none     &none
-		&none  &none   &none   &kp N      &kp M   &kp COMMA    &kp DOT  &kp FSLH  &none
+		&num_word  &kp Z   &kp X   &kp C      &kp V   &kp B        &none    &none     &none
+		&none  &none   &none   &kp N      &kp M   &kp COMMA    &kp DOT  &kp FSLH  &caps_word
 		/*r6*/
 		&magic L_MAGIC 0  &none    &kp PG_UP    &kp PG_DN  &sk LSHIFT     &kp RET &kp BSPC  &none
 		&none             &kp TAB  &kp SPACE    &sk RSHIFT &kp DOWN       &kp UP  &none     &none
@@ -327,7 +327,7 @@
 		&trans   &kp EXCL  &kp MINUS  &kp PLUS  &kp EQUAL    &kp DQT
                 &kp AMPS  &kp UNDER  &kp LPAR  &kp RPAR   &kp GRAVE  &trans
 		/*r5*/
-		&trans  &home_dir   &kp BSLH  &kp STAR   &kp FSLH  &kp QMARK  &trans  &trans  &trans
+		&trans  &home_dir   &kp BSLH  &kp STAR   &kp SQT  &kp QMARK  &trans  &trans  &trans
 		&trans  &trans  &trans  &kp TILDE   &kp DLLR  &kp LBKT  &kp RBKT  &paren_dir  &trans
 		/*r6*/
 		&trans  &trans  &trans   &trans    &trans    &trans      &trans  &trans
@@ -345,13 +345,13 @@
 		&trans   &trans   &trans   &trans   &trans   &trans
                 &trans   &trans   &trans   &trans   &trans   &trans
 		/*r3*/
-		&trans   &trans   &kp LEFT_ARROW   &kp HOME   &kp RIGHT_ARROW   &trans
+		&trans   &trans   &kp HOME  &kp UP  &kp END  &trans
 		&trans  &kp N7   &kp N8  &kp N9   &kp STAR   &trans
 		/*r4*/
-		&trans   &trans   &kp K_BACK   &kp END   &kp K_FORWARD   &caps_word
-		&num_word  &kp N4   &kp N5  &kp N6   &kp DOT   &kp MINUS
+		&trans   &kp K_BACK  &kp LEFT   &kp DOWN  &kp RIGHT  &kp K_FORWARD
+		&trans  &kp N4   &kp N5  &kp N6   &kp DOT   &kp MINUS
 		/*r5*/
-		&trans   &trans   &trans   &kp K_WWW   &trans   &trans   &trans   &trans   &trans
+		&trans   &trans   &kp PG_UP  &kp K_WWW   &kp PG_DN  &trans   &trans   &trans   &trans
 		&trans   &trans   &trans   &trans  &kp N1   &kp N2  &kp N3   &kp FSLH   &trans
 		/*r6*/
 		&trans   &trans   &kp SYSREQ   &kp DELETE   &kp K_APP   &trans      &trans   &trans
