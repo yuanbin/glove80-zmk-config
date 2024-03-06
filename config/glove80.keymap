@@ -298,7 +298,7 @@
 		&none    &none    &none    &none     &none    &none
 		&none    &none    &none    &none     &none    &none
 		/*r3*/
-		&kp ESC    &kp Q             &ltl L_FN_MOUSE W     &ltl L_NUM_NAV E      &ltl L_MEDIA R   &kp T
+		&kp ESC    &kp Q             &ltl L_FN_MOUSE W     &ltl L_NUM_NAV E      &ltl L_MEDIA R   &mtr LGUI T
                 &mtr RGUI Y    &ltr L_MEDIA U    &ltr L_NUM_NAV I      &ltr L_FN_MOUSE O     &kp P            &nav_word
 		/*r4*/
 		&swap       &mtl LSHIFT A         &mtl LALT S        &mtl LCTRL D    &ltl L_SYMBOLS F    &ltl L_MAC_SYS G
@@ -393,10 +393,10 @@
 		&trans   &trans   &trans   &trans   &trans   &trans
                 &trans   &trans   &trans   &trans   &trans   &trans
 		/*r3*/
-		&trans   &trans   &trans   &trans   &trans   &trans
+		&trans   &trans   &trans   &&dyn_macro PLAY   &trans   &trans
                 &trans   &kp LC(LS(SPACE))   &kp LC(PLUS)   &kp LC(MINUS)   &kp LC(N0)   &trans
 		/*r4*/
-		&trans   &trans   &trans   &dyn_macro PLAY   &trans   &trans
+		&trans   &kp LG(N1) &kp LG(N2) &kp LG(N3) &kp LG(N4) &kp LG(N5)
                 &trans   &kp LA(PRCNT)   &kp LC(UNDER)   &emacs_goto  &emacs_save   &trans
 		/*r5*/
 		&trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans
