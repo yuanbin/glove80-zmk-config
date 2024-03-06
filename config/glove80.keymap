@@ -393,10 +393,10 @@
 		&trans   &trans   &trans   &trans   &trans   &trans
                 &trans   &trans   &trans   &trans   &trans   &trans
 		/*r3*/
-		&trans   &trans   &trans   &&dyn_macro PLAY   &trans   &trans
+		&trans   &trans   &trans   &dyn_macro PLAY   &trans   &trans
                 &trans   &kp LC(LS(SPACE))   &kp LC(PLUS)   &kp LC(MINUS)   &kp LC(N0)   &trans
 		/*r4*/
-		&trans   &kp LG(N1) &kp LG(N2) &kp LG(N3) &kp LG(N4) &kp LG(N5)
+		&trans   &kp LG(N1)      &kp LG(N2)      &kp LG(N3)   &kp LG(N4)    &kp LG(N5)
                 &trans   &kp LA(PRCNT)   &kp LC(UNDER)   &emacs_goto  &emacs_save   &trans
 		/*r5*/
 		&trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans
