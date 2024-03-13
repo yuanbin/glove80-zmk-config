@@ -345,13 +345,13 @@
 		&trans   &trans   &trans   &trans   &trans   &trans
                 &trans   &trans   &trans   &trans   &trans   &trans
 		/*r3*/
-		&trans   &trans   &kp HOME  &kp UP  &kp END  &trans
+		&trans   &kp K_FORWARD   &kp PG_UP  &kp UP  &kp PG_DN  &kp LC(MINUS)
 		&trans  &kp N7   &kp N8  &kp N9   &kp STAR   &trans
 		/*r4*/
-		&trans   &kp K_BACK  &kp LEFT   &kp DOWN  &kp RIGHT  &kp K_FORWARD
+		&trans   &kp K_BACK  &kp LEFT   &kp DOWN  &kp RIGHT  &kp LC(PLUS)
 		&trans  &kp N4   &kp N5  &kp N6   &kp DOT   &kp MINUS
 		/*r5*/
-		&trans   &trans   &kp PG_UP  &kp K_WWW   &kp PG_DN  &trans   &trans   &trans   &trans
+		&trans   &kp K_WWW  &kp HOME  &trans   &kp END  &kp LC(N0)  &trans   &trans   &trans
 		&trans   &trans   &trans   &trans  &kp N1   &kp N2  &kp N3   &kp FSLH   &trans
 		/*r6*/
 		&trans   &trans   &kp SYSREQ   &kp DELETE   &kp K_APP   &trans      &trans   &trans
@@ -394,7 +394,7 @@
                 &trans   &trans   &trans   &trans   &trans   &trans
 		/*r3*/
 		&trans   &trans   &trans   &dyn_macro PLAY   &trans   &trans
-                &trans   &kp LC(LS(SPACE))   &kp LC(PLUS)   &kp LC(MINUS)   &kp LC(N0)   &trans
+                &trans   &kp LC(LS(SPACE))    &trans   &trans  &trans  &trans
 		/*r4*/
 		&trans   &kp LG(N1)      &kp LG(N2)      &kp LG(N3)   &kp LG(N4)    &kp LG(N5)
                 &trans   &kp LA(PRCNT)   &kp LC(UNDER)   &emacs_goto  &emacs_save   &trans
