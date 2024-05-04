@@ -120,6 +120,7 @@
 #define L_LOWER 6
 #define L_MAGIC 7
 #define L_NUMBERS 8
+#define L_ONEHAND 9
 
 #define MACRO_WAIT_MS 80
 
@@ -148,7 +149,7 @@
         // Configure it as a tap dance, so the first tap (or hold) is a &mo and the second tap is a &to
         lower: lower {
             compatible = "zmk,behavior-tap-dance";
-            label = "LAYER_TAP_DANCE";
+            //label = "LAYER_TAP_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&mo LAYER_Lower>, <&to LAYER_Lower>;
@@ -159,7 +160,7 @@
 / {
     macros {
         rgb_ug_status_macro: rgb_ug_status_macro {
-            label = "RGB_UG_STATUS";
+            //label = "RGB_UG_STATUS";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -174,28 +175,28 @@
     behaviors {
         bt_0: bt_0 {
             compatible = "zmk,behavior-tap-dance";
-            label = "BT_0";
+            //label = "BT_0";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&bt_select_0>, <&bt BT_DISC 0>;
         };
         bt_1: bt_1 {
             compatible = "zmk,behavior-tap-dance";
-            label = "BT_1";
+            //label = "BT_1";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&bt_select_1>, <&bt BT_DISC 1>;
         };
         bt_2: bt_2 {
             compatible = "zmk,behavior-tap-dance";
-            label = "BT_2";
+            //label = "BT_2";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&bt_select_2>, <&bt BT_DISC 2>;
         };
         bt_3: bt_3 {
             compatible = "zmk,behavior-tap-dance";
-            label = "BT_3";
+            //label = "BT_3";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&bt_select_3>, <&bt BT_DISC 3>;
@@ -203,7 +204,7 @@
     };
     macros {
         bt_select_0: bt_select_0 {
-            label = "BT_SELECT_0";
+            //label = "BT_SELECT_0";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -211,7 +212,7 @@
                   <&bt BT_SEL 0>;
         };
         bt_select_1: bt_select_1 {
-            label = "BT_SELECT_1";
+            //label = "BT_SELECT_1";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -219,7 +220,7 @@
                   <&bt BT_SEL 1>;
         };
         bt_select_2: bt_select_2 {
-            label = "BT_SELECT_2";
+            //label = "BT_SELECT_2";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -227,7 +228,7 @@
                   <&bt BT_SEL 2>;
         };
         bt_select_3: bt_select_3 {
-            label = "BT_SELECT_3";
+            //label = "BT_SELECT_3";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -238,7 +239,7 @@
 #else
     macros {
         bt_0: bt_0 {
-            label = "BT_0";
+            //label = "BT_0";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -246,7 +247,7 @@
                   <&bt BT_SEL 0>;
         };
         bt_1: bt_1 {
-            label = "BT_1";
+            //label = "BT_1";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -254,7 +255,7 @@
                   <&bt BT_SEL 1>;
         };
         bt_2: bt_2 {
-            label = "BT_2";
+            //label = "BT_2";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -262,7 +263,7 @@
                   <&bt BT_SEL 2>;
         };
         bt_3: bt_3 {
-            label = "BT_3";
+            //label = "BT_3";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -277,7 +278,7 @@
     behaviors {
         magic: magic {
             compatible = "zmk,behavior-hold-tap";
-            label = "MAGIC_HOLD_TAP";
+            //label = "MAGIC_HOLD_TAP";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
@@ -291,7 +292,7 @@
 	behaviors {
 		mtl: mod_tap_l {
 			compatible = "zmk,behavior-hold-tap";
-			label = "MOD_TAP_L";
+			//label = "MOD_TAP_L";
 			#binding-cells = <2>;
 			tapping-term-ms = <280>;
 			quick-tap-ms = <150>;
@@ -299,12 +300,12 @@
 			bindings = <&kp>, <&kp>;
 			hold-trigger-key-positions = <KEYS_R THUMBS>;
 			hold-trigger-on-release; // requires PR #1423 - merged
-			global-quick-tap;
+			//global-quick-tap;
 			//global-quick-tap-ms = <100>; // requires PR #1387 - not merged
 		};
 		mtr: mod_tap_r {
 			compatible = "zmk,behavior-hold-tap";
-			label = "MOD_TAP_R";
+			//label = "MOD_TAP_R";
 			#binding-cells = <2>;
 			tapping-term-ms = <280>;
 			quick-tap-ms = <150>;
@@ -312,12 +313,12 @@
 			bindings = <&kp>, <&kp>;
 			hold-trigger-key-positions = <KEYS_L THUMBS>;
 			hold-trigger-on-release; // requires PR #1423 - merged
-			global-quick-tap;
+			//global-quick-tap;
 			//global-quick-tap-ms = <100>; // requires PR #1387 - not merged
 		};
 		ltl: layer_tap_l {
 			compatible = "zmk,behavior-hold-tap";
-			label = "LAYER_TAP_L";
+			//label = "LAYER_TAP_L";
 			#binding-cells = <2>;
 			tapping-term-ms = <200>;
 			//quick-tap-ms = <150>;
@@ -330,7 +331,7 @@
 		};
 		ltr: layer_tap_r {
 			compatible = "zmk,behavior-hold-tap";
-			label = "LAYER_TAP_R";
+			//label = "LAYER_TAP_R";
 			#binding-cells = <2>;
 			tapping-term-ms = <200>;
 			//quick-tap-ms = <150>;
@@ -343,35 +344,35 @@
 		};
 		nav_word: behavior_nav_word {
 			compatible = "zmk,behavior-caps-word";
-			label = "NAV_WORD";
+			//label = "NAV_WORD";
 			#binding-cells = <0>;
 			layers = <L_NUM_NAV>; // insert location of numbers layer here
 			continue-list = <UP DOWN LEFT RIGHT PG_DN PG_UP HOME END K_BACK K_FORWARD>;  // adjust as desired
 		};
 		td_caps_nav: behavior_tap_dance_caps_nav_word {
 			compatible = "zmk,behavior-tap-dance";
-			label = "TAP_DANCE_CAPS_NAV";
+			//label = "TAP_DANCE_CAPS_NAV";
 			#binding-cells = <0>;
 			tapping-term-ms = <200>;
 			bindings = <&caps_word>, <&nav_word>;
 		};
 		mm_caps_nav: behavior_mod_morph_caps_nav_word {
 			compatible = "zmk,behavior-mod-morph";
-			label = "MOD_MORPH_CAPS_NAV";
+			//label = "MOD_MORPH_CAPS_NAV";
 			#binding-cells = <0>;
 			bindings = <&caps_word>, <&nav_word>;
 			mods = <(MOD_LSFT)>;
 		};
 		mm_rar_np: behavior_mod_morph_rar_np {
 			compatible = "zmk,behavior-mod-morph";
-			label = "MOD_MORPH_RAR_NP";
+			//label = "MOD_MORPH_RAR_NP";
 			#binding-cells = <0>;
 			bindings = <&rarn>, <&rarp>;
 			mods = <(MOD_LSFT)>;
 		};
 		swap: swapper {
 			compatible = "zmk,behavior-tri-state";
-			label = "SWAPPER";
+			//label = "SWAPPER";
 			#binding-cells = <0>;
 			bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
 			//timeout-ms = <5000>;
@@ -429,7 +430,7 @@
 				  )
 
 		dyn_macro: dyn_macro { // requires PR #1351 - manually merged
-			label = "ZM_dynamic-macro";
+			//label = "ZM_dynamic-macro";
 			compatible = "zmk,behavior-dynamic-macro";
 			#binding-cells = <1>;
 			wait-ms = <20>;
@@ -467,8 +468,8 @@
 			&swap       &mtl LSHIFT A         &mtl LALT S        &mtl LCTRL D    &ltl L_SYMBOLS F    &ltl L_MAC_SYS G
 			&ltr L_MAC_SYS H    &ltr L_SYMBOLS J      &mtr RCTRL K       &mtr RALT L     &mtr RSHIFT SEMI    &mm_rar_np
 			/*r5*/
-			&num_word  &kp Z   &kp X   &kp C      &kp V   &kp B        &mkp LCLK    &mkp MCLK     &mkp RCLK
-			&none  &none   &none   &kp N      &kp M   &kp COMMA    &kp DOT  &kp FSLH  &caps_word
+			&num_word  &kp Z   &kp X   &kp C      &kp V   &kp B        &mkp LCLK    &mkp RCLK     &tog L_ONEHAND
+			&none  &mkp RCLK   &mkp LCLK   &kp N      &kp M   &kp COMMA    &kp DOT  &kp FSLH  &caps_word
 			/*r6*/
 			&magic L_MAGIC 0  &none    &kp PG_UP    &kp PG_DN  &sk LSHIFT     &kp RET &kp BSPC  &none
 			&none             &kp TAB  &kp SPACE    &sk RSHIFT &kp DOWN       &kp UP  &none     &none
@@ -485,10 +486,10 @@
 			&trans     &trans    &trans    &trans    &trans     &trans
 			/*r3*/
 			&trans     &kp AT     &kp LT    &kp GT   &kp HASH  &kp PRCNT
-			&kp PIPE  &kp COLON  &kp LBRC  &kp RBRC   &kp CARET  &trans
+			&kp PIPE  &kp COLON  &kp LBRC  &kp RBRC   &kp GRAVE  &trans
 			/*r4*/
 			&trans   &kp EXCL  &kp MINUS  &kp PLUS  &kp EQUAL    &kp DQT
-			&kp AMPS  &kp UNDER  &kp LPAR  &kp RPAR   &kp GRAVE  &trans
+			&kp AMPS  &kp UNDER  &kp LPAR  &kp RPAR   &kp CARET  &trans
 			/*r5*/
 			&trans  &home_dir   &kp BSLH  &kp STAR   &kp SQT  &kp QMARK  &trans  &trans  &trans
 			&trans  &trans  &trans  &kp TILDE   &kp DLLR  &kp LBKT  &kp RBKT  &paren_dir  &trans
@@ -655,7 +656,7 @@
 			&trans   &trans   &trans   &trans   &trans   &trans
 			&trans  &kp N7   &kp N8  &kp N9   &kp STAR   &trans
 			/*r4*/
-			&trans   &trans   &trans   &trans   &trans   &trans
+			&trans   &trans   &trans   &kp DOT   &trans   &trans
 			&trans  &kp N4   &kp N5  &kp N6   &kp DOT   &kp MINUS
 			/*r5*/
 			&trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans &trans
@@ -665,5 +666,30 @@
 			&trans &trans   &trans          &kp N0  &kp PLUS   &kp EQUAL   &trans   &trans
 		>;
 		};
+
+		/* 9 */
+		layer_onehand {
+			bindings = <
+			/*r1*/
+			&trans   &trans   &trans   &trans   &trans
+			&trans   &trans   &trans   &trans   &trans
+			/*r2*/
+			&trans   &trans   &trans   &trans   &trans   &trans
+			&trans   &trans   &trans   &trans   &trans   &trans
+			/*r3*/
+			&trans   &kp K_FORWARD   &kp HOME  &trans  &kp END  &kp LC(MINUS)
+			&trans   &trans   &trans   &trans   &trans   &trans
+			/*r4*/
+			&trans   &kp K_BACK  &mkp MCLK   &mkp LCLK  &mkp RCLK  &kp LC(PLUS)
+			&trans   &trans   &trans   &trans   &trans   &trans
+			/*r5*/
+			&trans   &kp K_WWW  &kp PG_UP  &trans   &kp PG_DN  &kp LC(N0)  &trans   &trans   &trans
+			&trans   &trans   &trans   &trans   &trans   &trans &trans   &trans   &trans
+			/*r6*/
+			&trans   &trans   &kp SYSREQ   &kp DELETE   &kp K_APP   &kp DOT      &trans   &trans
+			&trans   &trans   &trans   &trans   &trans   &trans &trans   &trans
+		>;
+		};
+
 	};
 };
