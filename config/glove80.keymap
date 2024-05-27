@@ -662,7 +662,7 @@
 			&trans   &trans   &trans   &trans   &trans   &trans   &trans   &trans &trans
 			&trans   &trans   &trans   &trans  &kp N1   &kp N2  &kp N3   &kp FSLH   &trans
 			/*r6*/
-			&trans   &trans   &trans   &trans   &trans           &kp DOT   &trans   &trans
+			&trans   &trans   &trans   &trans   &trans           &trans   &trans   &trans
 			&trans &trans   &trans          &kp N0  &kp PLUS   &kp EQUAL   &trans   &trans
 		>;
 		};
